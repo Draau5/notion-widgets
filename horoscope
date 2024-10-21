@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorpio Horoscope with Birth Chart</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+        body {
+            font-family: 'Inconsolata', monospace;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .widget {
+            background: rgba(255, 235, 245, 0.8);
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            position: relative;
+            color: #4e004d;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid #ff88c2;
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #ff88c2;
+        }
+        .scorpio-icon {
+            font-size: 20px;
+            animation: rotate 4s linear infinite;
+        }
+        .horoscope {
+            background: #fff0f5;
+            border-radius: 15px;
+            padding: 15px;
+            color: #4e004d;
+            font-size: 14px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .horoscope-message {
+            text-align: left;
+            line-height: 1.6;
+        }
+        .birth-chart {
+            background: rgba(255, 136, 194, 0.2);
+            border-radius: 15px;
+            padding: 10px;
+            color: #4e004d;
+            font-size: 12px;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+        .birth-chart h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #ff88c2;
+            grid-column: span 2;
+            text-align: center;
+        }
+        .birth-chart p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        .vector-stars {
+            position: absolute;
+            top: 0;
+            right: 0;
+            fill: #ff88c2;
+            opacity: 0.8;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="header">
+            <span class="scorpio-icon"><i class="fa fa-scorpius"></i></span>
+            <h3>Scorpio Horoscope</h3>
+        </div>
+        <div class="horoscope">
+            <div class="horoscope-message" id="horoscope-message">
+                Today, your instincts are sharp, and it's a great time to trust your gut. Focus on finding balance and embracing new challenges with confidence.
+            </div>
+        </div>
+        <div class="birth-chart">
+            <h4>Your Birth Chart</h4>
+            <p><strong>Sun:</strong> Scorpio</p>
+            <p><strong>Moon:</strong> Gemini</p>
+            <p><strong>Rising:</strong> Taurus</p>
+            <p><strong>Mercury:</strong> Scorpio</p>
+            <p><strong>Venus:</strong> Sagittarius</p>
+            <p><strong>Mars:</strong> Pisces</p>
+            <p><strong>Jupiter:</strong> Gemini</p>
+            <p><strong>Saturn:</strong> Capricorn</p>
+            <p><strong>Uranus:</strong> Capricorn</p>
+            <p><strong>Neptune:</strong> Capricorn</p>
+            <p><strong>Pluto:</strong> Scorpio</p>
+        </div>
+        <svg class="vector-stars" width="50" height="50" viewBox="0 0 24 24">
+            <path d="M12 2l1.09 6.34L18 11l-5.18 2.66L12 18l-0.82-4.34L6 11l4.91-2.66L12 2z"></path>
+        </svg>
+    </div>
+
+    <script>
+        // Function to set a new horoscope message daily
+        function getDailyHoroscope() {
+            const horoscopes = [
+                "Today, your instincts are sharp, and it's a great time to trust your gut. Focus on finding balance and embracing new challenges with confidence.",
+                "You might find yourself drawn to a creative project. Let your passion guide you and don't be afraid to take the lead.",
+                "A conversation today might reveal hidden truths. Stay open and listen carefully—it could change your perspective.",
+                "Scorpio, today is perfect for some self-reflection. Take time to recharge and connect with your deeper emotions.",
+                "An unexpected opportunity may present itself today. Be ready to seize the moment, but keep an eye out for the details.",
+                "Your energy is magnetic right now. Use it to draw in positive connections and set new goals for the future.",
+                "It’s a good day for clearing out old patterns and making room for something new. Let go of what no longer serves you.",
+            ];
+
+            // Get a horoscope based on the current date
+            const today = new Date();
+            const index = today.getDate() % horoscopes.length;
+            return horoscopes[index];
+        }
+
+        // Set the daily horoscope message
+        document.getElementById('horoscope-message').textContent = getDailyHoroscope();
+    </script>
+</body>
+</html>
