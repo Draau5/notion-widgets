@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nalgene Water Tracker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
+        body {
+            font-family: 'Inconsolata', monospace;
+            background-color: #fff0f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .widget {
+            background: #ffd6e7;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+            max-width: 90%;
+            position: relative;
+        }
+        .bottle {
+            background: #ff8ba7;
+            border-radius: 0 0 15px 15px;
+            border: 2px solid #ff8ba7;
+            height: 300px;
+            width: 100px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .water {
+            background: #6ec6ff;
+            position: absolute;
+            bottom: 0;
+            height: 0%;
+            width: 100%;
+            transition: height 0.8s ease;
+        }
+        .lid {
+            background: #ff9e80;
+            height: 30px;
+            width: 120px;
+            margin: 0 auto;
+            border-radius: 15px 15px 0 0;
+            border: 2px solid #ff9e80;
+            position: relative;
+            top: -12px;
+        }
+        .buttons {
+            margin: 10px 0;
+        }
+        .button {
+            background: #ff9e80;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 8px 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .button:active {
+            background: #ff7043;
+        }
+        .reset {
+            background: #d32f2f;
+            font-size: 12px;
+        }
+        .celebration {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #ff4081;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="lid"></div>
+        <div class="bottle">
+            <div class="water" id="water"></div>
+        </div>
+        <div class="buttons">
+            <button class="button" onclick="addWater(0.5)">+ 0.5L</button>
+            <button class="button" onclick="addWater(-0.5)">- 0.5L</button>
+        </div>
+        <button class="button reset" onclick="resetWater()">Reset</button>
+        <div class="celebration" id="celebration">Stop or you'll drown!</div>
+    </div>
+
+    <script>
+        const goal = 2; // The daily water goal in liters
+        let consumed = localStorage.getItem('waterConsumed') ? parseFloat(localStorage.getItem('waterConsumed')) : 0;
+
+        function updateProgress() {
+            const percentage = Math.min((consumed / goal) * 100, 100);
+            document.getElementById('water').style.height = percentage + '%';
+            checkGoal();
+        }
+
+        function addWater(amount) {
+            consumed = Math.max(consumed + amount, 0);
+            localStorage.setItem('waterConsumed', consumed.toFixed(1));
+            updateProgress();
+        }
+
+        function resetWater() {
+            consumed = 0;
+            localStorage.setItem('waterConsumed', consumed.toFixed(1));
+            updateProgress();
+            document.getElementById('celebration').style.display = 'none';
+        }
+
+        function checkGoal() {
+            if (consumed >= goal) {
+                document.getElementById('celebration').style.display = 'block';
+            }
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
