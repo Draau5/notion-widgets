@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise & Sunset Widget</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .widget {
+            background: transparent;
+            border: 6px solid #d1d1d1;
+            border-radius: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            max-width: 90%;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .screen {
+            background: #9acd32;
+            border: 3px solid #333;
+            border-radius: 10px;
+            color: #333;
+            padding: 20px 10px;
+            font-size: 12px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+        }
+        .screen h2 {
+            margin: 0;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .info {
+            margin: 8px 0;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #333;
+            font-style: italic;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .button {
+            background: #d1d1d1;
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="screen">
+            <h2>Whitbourne, NL</h2>
+            <div class="info" id="current-date">Oct 20, 2024</div>
+            <div class="info" id="sunrise">
+                <i class="fas fa-sun icon"></i> Sunrise: --:--
+            </div>
+            <div class="info" id="sunset">
+                <i class="fas fa-moon icon"></i> Sunset: --:--
+            </div>
+            <div class="info" id="sun-sign">
+                <i class="fas fa-star icon"></i> Sun in: --
+            </div>
+            <div class="info" id="moon-sign">
+                <i class="fas fa-moon icon"></i> Moon in: --
+            </div>
+            <div class="info" id="moon-phase">
+                <i class="fas fa-circle icon"></i> Moon phase: --
+            </div>
+        </div>
+        <div class="footer">
+            stay witchy.
+        </div>
+        <div class="button-row">
+            <div class="button"></div>
+            <div class="button"></div>
+            <div class="button"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        const lat = 47.4079;
+        const lon = -53.5272;
+
+        async function fetchSunTimes() {
+            const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`);
+            const data = await response.json();
+
+            if (data.status === "OK") {
+                const sunrise = new Date(data.results.sunrise);
+                const sunset = new Date(data.results.sunset);
+
+                document.getElementById("sunrise").innerHTML = `<i class="fas fa-sun icon"></i> Sunrise: ${sunrise.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+                document.getElementById("sunset").innerHTML = `<i class="fas fa-moon icon"></i> Sunset: ${sunset.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+            } else {
+                document.getElementById("sunrise").textContent = "Error fetching sunrise time";
+                document.getElementById("sunset").textContent = "Error fetching sunset time";
+            }
+        }
+
+        function fetchAstrologyData() {
+            const sunSign = "Libra";
+            const moonSign = "Cancer";
+            const moonPhase = "Waxing Crescent";
+            const date = new Date().toDateString();
+
+            document.getElementById("sun-sign").innerHTML = `<i class="fas fa-star icon"></i> Sun in: ${sunSign}`;
+            document.getElementById("moon-sign").innerHTML = `<i class="fas fa-moon icon"></i> Moon in: ${moonSign}`;
+            document.getElementById("moon-phase").innerHTML = `<i class="fas fa-circle icon"></i> Moon phase: ${moonPhase}`;
+            document.getElementById("current-date").textContent = date;
+        }
+
+        fetchSunTimes();
+        fetchAstrologyData();
+    </script>
+</body>
+</html>
