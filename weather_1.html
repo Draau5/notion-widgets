@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Widget</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
+        body {
+            font-family: 'Inconsolata', monospace;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #4e4e4e;
+        }
+        .weather-widget {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #4e4e4e;
+            backdrop-filter: blur(5px);
+        }
+        .location {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .current-weather {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4e4e4e;
+        }
+        .weather-condition {
+            font-size: 12px;
+            color: #4e4e4e;
+            margin-top: 5px;
+        }
+        .forecast-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .forecast-day span {
+            font-size: 14px;
+        }
+        .forecast-icon {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #4e4e4e;
+        }
+        .temp-high {
+            color: #ff6b6b;
+        }
+        .temp-low {
+            color: #4e6e8e;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-widget">
+        <div class="location">
+            WHITBOURNE <br>
+            <span style="font-size: 14px;">WEATHER</span>
+        </div>
+        <div>
+            <div class="current-weather">3°C</div>
+            <div class="weather-condition">SCATTERED CLOUDS</div>
+        </div>
+        <div class="forecast-day">
+            <span>Monday</span>
+            <div class="forecast-icon">☁️</div>
+            <span class="weather-condition">CLOUDY</span>
+            <div><span class="temp-high">7°C</span> <span class="temp-low">2°C</span></div>
+        </div>
+        <div class="forecast-day">
+            <span>Tuesday</span>
+            <div class="forecast-icon">🌧️</div>
+            <span class="weather-condition">RAIN</span>
+            <div><span class="temp-high">6°C</span> <span class="temp-low">0°C</span></div>
+        </div>
+        <div class="forecast-day">
+            <span>Wednesday</span>
+            <div class="forecast-icon">🌙</div>
+            <span class="weather-condition">CLEAR</span>
+            <div><span class="temp-high">6°C</span> <span class="temp-low">0°C</span></div>
+        </div>
+        <div class="forecast-day">
+            <span>Thursday</span>
+            <div class="forecast-icon">☁️</div>
+            <span class="weather-condition">CLOUDY</span>
+            <div><span class="temp-high">8°C</span> <span class="temp-low">-1°C</span></div>
+        </div>
+        <div class="forecast-day">
+            <span>Friday</span>
+            <div class="forecast-icon">🌦️</div>
+            <span class="weather-condition">SHOWERS</span>
+            <div><span class="temp-high">14°C</span> <span class="temp-low">8°C</span></div>
+        </div>
+    </div>
+</body>
+</html>
