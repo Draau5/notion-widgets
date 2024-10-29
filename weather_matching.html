@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Weather Widget</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+        
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background-color: #1a1a1a; /* Dark background for entire page */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .widget {
+            background-color: #9acd32; /* Retro green background */
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: #333;
+            border: 3px solid transparent; /* Ensuring there's no external background */
+        }
+        .day {
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .day-name {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffcc00; /* Yellow color to match retro aesthetic */
+        }
+        .condition {
+            font-size: 10px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .temperature {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <!-- Example day layout, repeat for each day of the week -->
+        <div class="day">
+            <div class="day-name">Monday</div>
+            <div class="icon"><i class="fas fa-cloud"></i></div>
+            <div class="condition">CLOUDY</div>
+            <div class="temperature">7°C / 2°C</div>
+        </div>
+        <div class="day">
+            <div class="day-name">Tuesday</div>
+            <div class="icon"><i class="fas fa-cloud-rain"></i></div>
+            <div class="condition">RAIN</div>
+            <div class="temperature">6°C / 0°C</div>
+        </div>
+        <div class="day">
+            <div class="day-name">Wednesday</div>
+            <div class="icon"><i class="fas fa-moon"></i></div>
+            <div class="condition">CLEAR</div>
+            <div class="temperature">6°C / 0°C</div>
+        </div>
+        <div class="day">
+            <div class="day-name">Thursday</div>
+            <div class="icon"><i class="fas fa-cloud"></i></div>
+            <div class="condition">CLOUDY</div>
+            <div class="temperature">8°C / -1°C</div>
+        </div>
+        <div class="day">
+            <div class="day-name">Friday</div>
+            <div class="icon"><i class="fas fa-cloud-showers-heavy"></i></div>
+            <div class="condition">SHOWERS</div>
+            <div class="temperature">14°C / 8°C</div>
+        </div>
+    </div>
+</body>
+</html>
